@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class CircularAnimationPainter extends CustomPainter {
   @override
@@ -11,7 +12,10 @@ class CircularAnimationPainter extends CustomPainter {
     var paint = Paint()
       ..style = PaintingStyle.fill
       ..color = Colors.cyan;
-    var radius = 24.0 + 800 * _fraction;
+    var finalRadius = sqrt(pow(_screeesize.width, 2) +
+        pow(_screeesize.height, 2));
+    print(finalRadius);
+    var radius = finalRadius * _fraction;
     canvas.drawCircle(Offset(size.width / 2, size.height / 2), radius, paint);
   }
 
