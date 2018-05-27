@@ -11,7 +11,7 @@ class CircularAnimationPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
       ..style = PaintingStyle.fill
-      ..color = Colors.cyan;
+      ..color = Colors.indigo;
     var finalRadius = sqrt(pow(_screeesize.width, 2) +
         pow(_screeesize.height, 2));
     print(finalRadius);
