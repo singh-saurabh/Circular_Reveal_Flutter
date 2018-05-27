@@ -24,40 +24,39 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: new Container(
         alignment: Alignment.bottomRight,
-        child: returnFinder(),
+        child: Circular(counter),
+        //child: returnFinder(fabPressed, counter),
       ),
       floatingActionButton: new FloatingActionButton(
         onPressed: fabCounter,
         child: new Icon(Icons.crop_square),
+
       ),
     );
   }
 
 
-  returnFinder(){
+  returnFinder(bool fabPress, int count){
     if(fabPressed){
       if (counter==0){
-        setState(() {
+        /*setState(() {
           fabPressed = false;
-
-        });
+        });*/
         return Circular(0);
       }
       else {
-        setState(() {
+        /*setState(() {
           fabPressed = false;
-
-        });
+        });*/
         return Circular(1); //change this
       }
     }
     return null;
   }
 
-  void fabCounter() {
+  fabCounter() {
     setState(() {
-      fabPressed = true;
-      counter=(counter+1) % 2;
+      counter = 0;
     });
   }
 }

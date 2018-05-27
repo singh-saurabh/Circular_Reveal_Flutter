@@ -16,7 +16,7 @@ class Circular extends StatefulWidget {
 class CircularState extends State<Circular> with TickerProviderStateMixin {
 
   Animation _animation;
-  double _fraction = 0.0;
+  double _fraction;
 
   void initState() {
     super.initState();
@@ -36,6 +36,7 @@ class CircularState extends State<Circular> with TickerProviderStateMixin {
   }
 
   void reveal() {
+    _fraction = 0.0;
     AnimationController controller = AnimationController(
         duration: Duration(milliseconds: 1000), vsync: this);
     _animation = Tween(begin: 0.0, end: 1.0).animate(controller)
