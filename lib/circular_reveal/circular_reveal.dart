@@ -5,22 +5,15 @@ import 'dart:async';
 import 'package:circular_reveal_flutter/navigation.dart';
 
 class Circular extends StatefulWidget {
-  int stateType;
+  final int stateType;
 
-  Circular(int stateType) {
-    this.stateType = stateType;
-  }
+  Circular(this.stateType);
 
   @override
-  CircularState createState() => CircularState(stateType);
+  CircularState createState() => CircularState();
 }
 
 class CircularState extends State<Circular> with TickerProviderStateMixin {
-  int stateType;
-
-  CircularState(int stateType) {
-    this.stateType = stateType;
-  }
 
   Animation _animation;
   double _fraction = 0.0;
@@ -28,9 +21,9 @@ class CircularState extends State<Circular> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    if (stateType == 0) {
+    if (widget.stateType == 0) {
       reveal();
-    } else if (stateType == 1) {
+    } else if (widget.stateType == 1) {
       hide();
     }
   }
@@ -50,12 +43,6 @@ class CircularState extends State<Circular> with TickerProviderStateMixin {
         setState(() {
           _fraction = _animation.value;
         });
-      })
-      ..addStatusListener((AnimationStatus state) {
-        if (state == AnimationStatus.completed) {
-          Navigation.navigateTo(context, 'second_page',
-              transition: TransitionType.fadeIn);
-        }
       });
     controller.forward();
   }
@@ -69,12 +56,6 @@ class CircularState extends State<Circular> with TickerProviderStateMixin {
         setState(() {
           _fraction = 1 - _animation.value;
         });
-      })
-      ..addStatusListener((AnimationStatus state) {
-        if (state == AnimationStatus.completed) {
-          Navigation.navigateTo(context, 'first_page',
-              transition: TransitionType.fadeIn);
-        }
       });
     controller.forward();
   }

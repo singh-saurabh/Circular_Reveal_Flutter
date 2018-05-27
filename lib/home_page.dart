@@ -13,7 +13,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  int counter=0;
+  int counter=1;
   bool fabPressed = false;
 
   @override
@@ -24,30 +24,39 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: new Container(
         alignment: Alignment.bottomRight,
-        child: Circular(0),
+        child: returnFinder(),
       ),
       floatingActionButton: new FloatingActionButton(
         onPressed: fabCounter,
-        child: new Icon(Icons.ac_unit),
+        child: new Icon(Icons.crop_square),
       ),
     );
   }
 
 
   returnFinder(){
-    if(!fabPressed){
+    if(fabPressed){
       if (counter==0){
-        return FirstPage();
+        setState(() {
+          fabPressed = false;
+
+        });
+        return Circular(0);
       }
       else {
-        return FirstPage(); //change this
+        setState(() {
+          fabPressed = false;
+
+        });
+        return Circular(1); //change this
       }
     }
-    return Circular(counter);
+    return null;
   }
 
   void fabCounter() {
     setState(() {
+      fabPressed = true;
       counter=(counter+1) % 2;
     });
   }
